@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717 {
+namespace COMP717.Structures {
     public class Node {
         public List<Node> children;
         public int value;

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using COMP717.Structures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.TakeAway {
+namespace COMP717.Game.TakeAway {
     public class Table : State {
         public int chips, maxTakeAway;
         public bool turn;

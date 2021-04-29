@@ -1,11 +1,12 @@
 ﻿using COMP717.Algorithms;
+using COMP717.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.TakeAway {
+namespace COMP717.Game.TakeAway {
     class TakeAwayTree {
         public Node root;
         public int depth;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.ConnectFour {
+namespace COMP717.Game.ConnectFour {
     class ConnectFourGame {
         private Grid board = new Grid();
         private char turn = 'O';

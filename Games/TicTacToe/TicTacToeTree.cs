@@ -1,11 +1,12 @@
 ﻿using COMP717.Algorithms;
+using COMP717.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.TicTacToe {
+namespace COMP717.Game.TicTacToe {
     public class TicTacToeTree {
         public Node root;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.TakeAway {
+namespace COMP717.Game.TakeAway {
     public class TakeAwayGame {
         public Table table;
         public bool turn = true;

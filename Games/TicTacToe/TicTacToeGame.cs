@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP717.TicTacToe {
+namespace COMP717.Game.TicTacToe {
     public class TicTacToeGame {
         private Board board = new Board();
         private char turn;

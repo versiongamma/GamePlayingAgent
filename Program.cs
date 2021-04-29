@@ -1,6 +1,6 @@
-﻿using COMP717.ConnectFour;
-using COMP717.TakeAway;
-using COMP717.TicTacToe;
+﻿using COMP717.Game.ConnectFour;
+using COMP717.Game.TakeAway;
+using COMP717.Game.TicTacToe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
