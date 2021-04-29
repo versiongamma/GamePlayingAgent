@@ -11,9 +11,6 @@ namespace COMP717.TicTacToe {
         private Board board = new Board();
         private char turn;
         private int searchDepth;
-        public Statistics stats = new Statistics();
-
-        public int[] LastMove = new int[2];
 
         public TicTacToeGame(bool playerStart = true, int searchDepth = 9, bool doUserInput = true) {
             turn = playerStart ? 'O' : 'X';
@@ -22,23 +19,22 @@ namespace COMP717.TicTacToe {
             if (!playerStart) {
                 int[] agentPlay = Search(searchDepth);
                 Play(agentPlay[1], agentPlay[0]);
-                LastMove = agentPlay;
             }
 
             if (doUserInput) { UserPlay(playerStart); }
         }
 
-        public void Play(int x, int y) {
-            if (board.isTermnial()) { return; }
-            if (!board.Add(x, y, turn)) { LastMove = new int[] { x, y }; }
-            if (board.isTermnial()) { return; }
+        public bool Play(int x, int y) {
+            if (!board.Add(x, y, turn)) { return false; }
+            if (board.isTermnial()) { return true; }
             turn = turn == 'X' ? 'O' : 'X';
 
             int[] agentPlay = Search(searchDepth);
             board.Add(agentPlay[1], agentPlay[0], turn);
-            LastMove = agentPlay;
-            if (board.isTermnial()) { return; }
+            if (board.isTermnial()) { return true; }
             turn = turn == 'X' ? 'O' : 'X';
+
+            return true;
         }
 
         public void UserPlay(bool playerStart) {
@@ -76,18 +72,11 @@ namespace COMP717.TicTacToe {
         }
 
         public bool IsComplete() { 
-            if (board.Eval() == 10) { stats.Wins++; }
-            if (board.Eval() == -10) { stats.Losses++; }
-            if (board.isTermnial() && Math.Abs(board.Eval()) != 10) { stats.Ties++; } 
             return board.isTermnial(); 
         }
 
         public int[] Search(int depth = Int32.MaxValue) {
-            Stopwatch time = new Stopwatch();
-            time.Start();
             TicTacToeTree tree = new TicTacToeTree(new Board((char[,])this.board.GetState().Clone()), turn, depth);
-            time.Stop();
-            stats.OperationTimes.Add(time.ElapsedMilliseconds);
             //Console.WriteLine(tree.root);
             //System.Threading.Thread.Sleep(5);
             return tree.GetBestPlay();
