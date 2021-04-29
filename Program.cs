@@ -30,7 +30,7 @@ namespace COMP717 {
                         break;
                     case "3":
                         Console.Clear();
-                        ConnectFourGame c4 = new ConnectFourGame();
+                        ConnectFourGame c4 = new ConnectFourGame(searchDepth: 6);
                         break;
                     case "x":
                         exit = true;

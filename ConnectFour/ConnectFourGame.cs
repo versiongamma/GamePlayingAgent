@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace COMP717.ConnectFour {
     class ConnectFourGame {
-        Grid board = new Grid();
-        char turn = 'O';
+        private Grid board = new Grid();
+        private char turn = 'O';
+        private int searchDepth;
 
-        public ConnectFourGame() {
 
+        public ConnectFourGame(int searchDepth = Int32.MaxValue) {
+            this.searchDepth = searchDepth;
 
             UserPlay();
 
@@ -23,7 +25,7 @@ namespace COMP717.ConnectFour {
             if (board.isTermnial()) { return; }
             turn = turn == 'X' ? 'O' : 'X';
 
-            board.Add(Search(6), turn);
+            board.Add(Search(searchDepth    ), turn);
             if (board.isTermnial()) { return; }
             turn = turn == 'X' ? 'O' : 'X';
         }
