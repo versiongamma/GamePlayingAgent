@@ -24,7 +24,7 @@ namespace COMP717.Structures {
 
             // Look, I am aware it would definitely be possible to do this programatically, but at
             // this point I don't really want to figure that out just so I can see how my algorithms
-            // don't work, cause this is just for me, not for production
+            // don't work, cause this is just for me, it's not gonna be used in production
             foreach(Node n1 in children) {
                 output += "\n\t- " + n1.value + " ["+n1.play[0]+"]";
                 //output += "\n" + n1.state;

@@ -33,9 +33,9 @@ namespace COMP717.Game.TicTacToe {
         
 
         public override string ToString() {
-            string output = "";
+            string output = "    1   2   3\n";
             for (int y = 0; y < 3; y++) {
-            output += "| ";
+            output += (y + 1) +" | ";
                 for (int x = 0; x < 3; x++) {
                     output += this.state[y, x] + " | ";
                 }

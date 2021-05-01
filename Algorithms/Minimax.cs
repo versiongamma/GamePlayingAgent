@@ -14,10 +14,7 @@ namespace COMP717.Algorithms {
                 int max = Int32.MinValue;
                 foreach (Node child in node.children) {
                     int value = run(child, depth - 1, !maxing);
-                    if (value > max) {
-                        node.value = value;
-                        max = value;
-                    }
+                    if (value > max) { node.value = value; max = value; }
                 }
 
                 return max;
@@ -25,10 +22,7 @@ namespace COMP717.Algorithms {
                 int min = Int32.MaxValue;
                 foreach (Node child in node.children) {
                     int value = run(child, depth - 1, !maxing);
-                    if (value < min) {
-                        node.value = value;
-                        min = value;
-                    }
+                    if (value < min) { node.value = value; min = value; }
                 }
                 return min;
             }

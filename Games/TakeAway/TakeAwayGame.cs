@@ -46,13 +46,11 @@ namespace COMP717.Game.TakeAway {
                 Console.Clear();
 
                 /** Method for writing game state messages before the table appears */
-
-                // My hope is that you'll look at this, throw up a little, and then move on and not judge me for it
                 if (error != "") {
                     Console.WriteLine(error + "\n\n");
                     error = "";
                 } else {
-                    // Like seriously this is a terrible way of implementing this. But I'll be damned if it wasn't quick and easy
+                    // This is a terrible way of implementing this. But I'll be damned if it wasn't quick and easy
                     if (playerPlay > 0) { Console.WriteLine("You removed " + playerPlay + " chips"); } else { Console.Write("\n"); };
                     if (agentPlay > 0) { Console.WriteLine("Computer removed " + agentPlay + " chips\n"); } else { Console.WriteLine("\n"); };
                 }
@@ -87,6 +85,7 @@ namespace COMP717.Game.TakeAway {
                 
             }
 
+            Console.Clear();
             if (turn) { Console.WriteLine("Computer removed " + agentPlay + " chips"); } else { Console.WriteLine("You removed " + playerPlay + " chips"); }
 
             Console.WriteLine("\n\nThere are 0 chips on the table");
