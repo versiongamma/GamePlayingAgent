@@ -281,32 +281,11 @@ namespace COMP717 {
                             }
                         }
                         break;
-                    case "5":
-                        Compare();
-                        break;
                     case "x":
                         exit = true;
                         break;
                 }              
             }
-        }
-
-        static void Compare() {
-            
-           for (var i = 1; i < 30; i++) {
-                TakeAwayGame game = new TakeAwayGame(i, 3, i, false, false);
-                Console.WriteLine("Search Depth " + i + ": " + game.Compare());               
-            }
-
-            for (var i = 1; i < 25; i++) {
-                for (var n = 3; n < 10; n++) {
-                    TakeAwayGame game = new TakeAwayGame(30, n, i, false, false);
-                    Console.WriteLine("Search Depth " + i + ", " + n + " Removes: " + game.Compare());
-                }
-            }
-
-            Console.WriteLine("\nPress 'Enter' to continue...");
-            Console.ReadLine();
         }
     }
 }

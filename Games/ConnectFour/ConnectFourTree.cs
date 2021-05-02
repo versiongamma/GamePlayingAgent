@@ -31,6 +31,10 @@ namespace COMP717.Game.ConnectFour {
             }
         }
 
+        /* ** NB: This is the implementation of the Alpha Beta Pruning Algorithm ** */
+        // It is run here as this drastically improves performance, as it eliminates the 
+        // need for the pruned branches of the tree to be generated, which is where most 
+        // of the processing time comes from
         public Node GenerateTreeAlphaBeta(Node node, char turn, int depth, int a, int b) {
             Grid board = node.state as Grid;
             for (int x = 0; x < 7; x++) {

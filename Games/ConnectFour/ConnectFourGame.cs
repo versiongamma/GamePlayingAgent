@@ -56,9 +56,8 @@ namespace COMP717.Game.ConnectFour {
             int compPlay = compStartingMove, playerPlay = -1;
            
             while (!board.isTerminal()) {
-                //Console.Clear();
+                Console.Clear();
 
-                // Is this better? I'm not sure, maybe it's more readable who knows
                 if (error != "") {
                     Console.WriteLine(error);
                     error = "";
@@ -131,7 +130,6 @@ namespace COMP717.Game.ConnectFour {
             Stopwatch time = new Stopwatch();
             time.Start();
             ConnectFourTree tree = new ConnectFourTree(board, turn, minimax, searchDepth);
-            //Console.WriteLine(tree.root);
             time.Stop();
             compSearchTime = time.ElapsedMilliseconds;
             return tree.GetBestPlay();

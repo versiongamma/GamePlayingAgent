@@ -59,12 +59,10 @@ namespace COMP717.Game.TakeAway {
 
                 Console.Clear();
 
-                /** Method for writing game state messages before the table appears */
                 if (error != "") {
                     Console.WriteLine(error + "\n\n");
                     error = "";
                 } else {
-                    // This is a terrible way of implementing this. But I'll be damned if it wasn't quick and easy
                     if (playerPlay > 0) { Console.WriteLine("You removed " + playerPlay + " chips"); } else { Console.Write("\n"); };
                     if (agentPlay > 0) { Console.WriteLine("Computer removed " + agentPlay + " chips\n"); } else { Console.WriteLine("\n"); };
                 }
@@ -75,8 +73,6 @@ namespace COMP717.Game.TakeAway {
                 } else {
                     Console.WriteLine();
                 }
-
-                /** End the error and game state messages */
 
                 Console.WriteLine(table + " chips on the table");
                 Console.Write("Amount (1-" + maxTakeAway + ") > ");
@@ -94,7 +90,7 @@ namespace COMP717.Game.TakeAway {
                     continue;
                 }
 
-                // I don't like this duplication, but this isn't part of any algorithm so who cares
+                // I don't like this duplication, but this isn't part of any algorithm soooo
                 playerPlay = int.Parse(input); turn = false;
                 table.Remove(playerPlay);
                 if (table.isTerminal()) { break; }
@@ -114,18 +110,6 @@ namespace COMP717.Game.TakeAway {
 
             Console.WriteLine("\nPress 'Enter' to continue...");
             Console.ReadLine();
-        }
-
-        public string Compare() {
-            string output = compSearchTime + "ms for first search";
-
-            while (!table.isTerminal()) {
-                int play = Search(searchDepth);
-                Play(play);
-                //output += table + " ";
-            }
-
-            return output; //+ (turn ? "First Agent" : "Second Agent") + " Won";
         }
 
         public int Search(int depth = Int32.MaxValue) {

@@ -65,6 +65,7 @@ namespace COMP717.Game.ConnectFour {
         public int Eval() {
             var final = 0;
             
+            /* Checking Columns */
             for (var y = 0; y < 6; y++) {
                 for (var x = 0; x < 4; x++) {
                     var result = 0;
@@ -105,6 +106,7 @@ namespace COMP717.Game.ConnectFour {
                 }
             }
 
+            /* Checking Rows */
             for (var x = 0; x < 7; x++) {
                 for (var y = 0; y < 3; y++) {
                     var result = 0;
@@ -145,6 +147,7 @@ namespace COMP717.Game.ConnectFour {
                 }
             }
 
+            /* Checking Diagonals from the Left */
             for (var x = 0; x < 4; x++) {
                 for (var y = 3; y < 6; y++) {
                     var result = 0;
@@ -185,6 +188,7 @@ namespace COMP717.Game.ConnectFour {
                 }
             }
 
+            /* Checking Diagonals from the Right */
             for (var x = 6; x >= 3; x--) {
                 for (var y = 3; y < 6; y++) {
                     var result = 0;
