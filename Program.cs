@@ -37,7 +37,8 @@ namespace COMP717 {
 " | |___| |__| | |  | | |     / /   | | / /   \n" +
 "  \\_____\\____/|_|  |_|_|    /_/    |_|/_/    ");
 
-                Console.WriteLine("\n -- Assignment One | Game Playing Agents --\n");
+                Console.WriteLine("\n -- Assignment One - Game Playing Agents --");
+                Console.WriteLine("       -- Matt Tribble - 19076935 --\n");
 
                 Console.WriteLine("1) Tic Tac Toe");
                 Console.WriteLine("2) Take Away");
