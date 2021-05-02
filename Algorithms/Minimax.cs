@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace COMP717.Algorithms {
     public class Minimax {
         public static int run(Node node, int depth, bool maxing) {
-            if (depth == 0 || node.state.isTermnial()) { return node.value; }
+            if (depth == 0 || node.state.isTerminal() || node.value != 0) { return node.value; }
 
             if (maxing) {
                 int max = Int32.MinValue;

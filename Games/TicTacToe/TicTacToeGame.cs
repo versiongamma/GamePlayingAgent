@@ -12,41 +12,45 @@ namespace COMP717.Game.TicTacToe {
         private char turn;
         private int searchDepth;
 
+        private long compSearchTime = 0;
+
         public TicTacToeGame(bool playerStart = true, int searchDepth = 9, bool doUserInput = true) {
-            turn = playerStart ? 'O' : 'X';
+            turn = 'O';
             this.searchDepth = searchDepth;
 
             if (!playerStart) {
                 int[] agentPlay = Search(searchDepth);
-                Play(agentPlay[1], agentPlay[0]);
+                board.GetState()[agentPlay[0], agentPlay[1]] = 'X';
+                if (doUserInput) { UserPlay(new int[] { agentPlay[1], agentPlay[0] }); }
+            } else {
+                if (doUserInput) { UserPlay(new int[] { -1, -1 }); }
             }
 
-            if (doUserInput) { UserPlay(playerStart); }
+            
         }
 
         // Come one man, why are you returning a 2d int array to represent the plays they made, not cool
         public int[][] Play(int x, int y) {
             if (!board.Add(x, y, turn)) { return new int[][] { new int[] { -1, -1}, new int[] { -1, -1 } }; }
-            if (board.isTermnial()) { return new int[][] { new int[] { -1, -1 }, new int[] { -1, -1 } }; }
+            if (board.isTerminal()) { return new int[][] { new int[] { -1, -1 }, new int[] { -1, -1 } }; }
             turn = turn == 'X' ? 'O' : 'X';
 
             int[] agentPlay = Search(searchDepth);
             board.Add(agentPlay[1], agentPlay[0], turn);
-            if (board.isTermnial()) { return new int[][] { new int[] { -1, -1 }, new int[] { -1, -1 } }; }
+            if (board.isTerminal()) { return new int[][] { new int[] { -1, -1 }, new int[] { -1, -1 } }; }
             turn = turn == 'X' ? 'O' : 'X';
 
             return new int[][] { new int[] { x, y }, agentPlay };
         }
 
-        public void UserPlay(bool playerStart) {
+        public void UserPlay(int[] compPlay) {
             var error = "";
 
-            var compPlay = new int[] { -1, -1 };
             var playerPlay = new int[] { -1, -1 };
 
             
             Console.WriteLine();
-            while (!board.isTermnial()) {
+            while (!board.isTerminal()) {
                 Console.Clear();
 
                 if (error != "") {
@@ -66,6 +70,13 @@ namespace COMP717.Game.TicTacToe {
                 if (playerPlay[0] != -1) {
                     Console.WriteLine("You (O) played [" + (playerPlay[0] + 1) + ", " + (playerPlay[1] + 1) + "]");
                     playerPlay = new int[] { -1, -1 };
+                } else {
+                    Console.WriteLine();
+                }
+
+                if (compSearchTime > 0) {
+                    Console.WriteLine("Computer took: " + compSearchTime + "ms to find this play");
+                    compSearchTime = 0;
                 } else {
                     Console.WriteLine();
                 }
@@ -115,11 +126,15 @@ namespace COMP717.Game.TicTacToe {
         }
 
         public bool IsComplete() { 
-            return board.isTermnial(); 
+            return board.isTerminal(); 
         }
 
         public int[] Search(int depth = Int32.MaxValue) {
+            Stopwatch time = new Stopwatch();
+            time.Start();
             TicTacToeTree tree = new TicTacToeTree(new Board((char[,])this.board.GetState().Clone()), turn, depth);
+            time.Stop();
+            compSearchTime = time.ElapsedMilliseconds;
             return tree.GetBestPlay();
         }
 

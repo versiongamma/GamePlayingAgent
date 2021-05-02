@@ -8,6 +8,6 @@ namespace COMP717.Structures
 {
     public interface State {
         int Eval();
-        bool isTermnial();
+        bool isTerminal();
     }
 }

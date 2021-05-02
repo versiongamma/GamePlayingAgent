@@ -35,7 +35,7 @@ namespace COMP717.Game.ConnectFour {
             Grid board = node.state as Grid;
             for (int x = 0; x < 7; x++) {
                 if (board.ColumnFull(x)) { continue; }
-                if (board.isTermnial() || depth == 0) { return new Node(board.Eval(), new Grid((char[,])board.GetState().Clone()), node.play); }
+                if (board.isTerminal() || depth == 0) { return new Node(board.Eval(), new Grid((char[,])board.GetState().Clone()), node.play); }
 
                 Grid newBoard = new Grid((char[,])board.GetState().Clone());
                 newBoard.Add(x, turn);
@@ -60,7 +60,7 @@ namespace COMP717.Game.ConnectFour {
             Grid board = node.state as Grid;
             for (int x = 0; x < 7; x++) {
                 if (board.ColumnFull(x)) { continue; }
-                if (board.isTermnial() || depth == 0) { return new Node(board.Eval(), new Grid((char[,])board.GetState().Clone()), node.play); }
+                if (board.isTerminal() || depth == 0) { return new Node(board.Eval(), new Grid((char[,])board.GetState().Clone()), node.play); }
 
                 Grid newBoard = new Grid((char[,])board.GetState().Clone());
                 newBoard.Add(x, turn);

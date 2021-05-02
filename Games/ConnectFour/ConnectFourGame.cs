@@ -33,12 +33,12 @@ namespace COMP717.Game.ConnectFour {
 
         public int[] Play(int x) {
             board.Add(x, turn);
-            if (board.isTermnial()) { return new int[] { -1, -1 }; }
+            if (board.isTerminal()) { return new int[] { -1, -1 }; }
             turn = turn == 'X' ? 'O' : 'X';
 
             int compPlay = Search();
             board.Add(compPlay, turn);
-            if (board.isTermnial()) { return new int[] { -1, -1 }; }
+            if (board.isTerminal()) { return new int[] { -1, -1 }; }
             turn = turn == 'X' ? 'O' : 'X';
 
             return new int[] { x, compPlay };
@@ -55,8 +55,8 @@ namespace COMP717.Game.ConnectFour {
             string error = "";
             int compPlay = compStartingMove, playerPlay = -1;
            
-            while (!board.isTermnial()) {
-                Console.Clear();
+            while (!board.isTerminal()) {
+                //Console.Clear();
 
                 // Is this better? I'm not sure, maybe it's more readable who knows
                 if (error != "") {
@@ -129,6 +129,7 @@ namespace COMP717.Game.ConnectFour {
             Stopwatch time = new Stopwatch();
             time.Start();
             ConnectFourTree tree = new ConnectFourTree(board, turn, minimax, searchDepth);
+            //Console.WriteLine(tree.root);
             time.Stop();
             compSearchTime = time.ElapsedMilliseconds;
             return tree.GetBestPlay();
@@ -136,7 +137,7 @@ namespace COMP717.Game.ConnectFour {
 
         public override string ToString() { return board.ToString(); }
 
-        public bool Complete() { return board.isTermnial(); }
+        public bool Complete() { return board.isTerminal(); }
 
         public Grid GetBoard() { return board; }
 

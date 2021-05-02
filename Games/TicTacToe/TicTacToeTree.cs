@@ -31,7 +31,7 @@ namespace COMP717.Game.TicTacToe {
                 for (int x = 0; x < 3; x++) {
                     if (board.Get(x, y) != ' ') { continue; }
 
-                    if (board.isTermnial() || depth == 0) { return new Node(board.Eval(), new Board((char[,])board.GetState().Clone()), node.play); }
+                    if (board.isTerminal() || depth == 0) { return new Node(board.Eval(), new Board((char[,])board.GetState().Clone()), node.play); }
 
                     Board newBoard = new Board((char[,])board.GetState().Clone());
                     newBoard.Add(x, y, turn);

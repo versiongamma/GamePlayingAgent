@@ -13,7 +13,7 @@ namespace COMP717 {
         static void Main(string[] args) {
             bool exit = false;
 
-            var tccSearchDepth = 7;
+            var tccSearchDepth = 9;
             var taSearchDepth = 15;
             var c4SearchDepth = 6;
 
@@ -55,7 +55,7 @@ namespace COMP717 {
                         break;
                     case "2":
                         Console.Clear();
-                        TakeAwayGame ta = new TakeAwayGame(taCards, taRemoveAmount, taSearchDepth);
+                        TakeAwayGame ta = new TakeAwayGame(taCards, taRemoveAmount, taSearchDepth, true, taStarter);
                         break;
                     case "3":
                         Console.Clear();
@@ -102,10 +102,11 @@ namespace COMP717 {
                                                     Console.Write("\nSearch Depth> ");
                                                     input = Console.ReadLine();
                                                     if (int.Parse(input) <= 0 || int.Parse(input) > 9) {
-                                                        Console.WriteLine("\nSearch depth must be between 1 and 7\n");
+                                                        Console.WriteLine("\nSearch depth must be between 1 and 9\n");
                                                         continue;
                                                     }
                                                     tccSearchDepth = int.Parse(input);
+                                                    input = "";
                                                     set = true;
                                                 } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
                                             }
@@ -121,6 +122,7 @@ namespace COMP717 {
                                                     continue;
                                                 }
                                                 tccStarter = input == "1" ? true : false;
+                                                input = "";
                                                 set = true;
                                             }
                                         }
@@ -155,6 +157,7 @@ namespace COMP717 {
                                                         continue;
                                                     }
                                                     taSearchDepth = int.Parse(input);
+                                                    input = "";
                                                     set = true;
                                                 } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
                                             }
@@ -171,6 +174,7 @@ namespace COMP717 {
                                                         continue;
                                                     }
                                                     taCards = int.Parse(input);
+                                                    input = "";
                                                     set = true;
                                                 } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
                                             }
@@ -187,6 +191,7 @@ namespace COMP717 {
                                                         continue;
                                                     }
                                                     taRemoveAmount = int.Parse(input);
+                                                    input = "";
                                                     set = true;
                                                 } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
                                             }
@@ -202,6 +207,7 @@ namespace COMP717 {
                                                     continue;
                                                 }
                                                 taStarter = input == "1" ? true : false;
+                                                input = "";
                                                 set = true;
                                             }
                                         }
@@ -235,6 +241,7 @@ namespace COMP717 {
                                                         continue;
                                                     }
                                                     c4SearchDepth = int.Parse(input);
+                                                    input = "";
                                                     set = true;
                                                 } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
                                             }
@@ -250,6 +257,7 @@ namespace COMP717 {
                                                     continue;
                                                 }
                                                 c4minimax = input == "1" ? true : false;
+                                                input = "";
                                                 set = true;
                                             }
                                         }
@@ -283,26 +291,13 @@ namespace COMP717 {
         }
 
         static void Compare() {
-            ConnectFourGame g1 = new ConnectFourGame(searchDepth: 6, playerStart: false, minimax: true, doUIPlay: false);
-            ConnectFourGame g2 = new ConnectFourGame(searchDepth: 6, playerStart: true, minimax: false, doUIPlay: false);
             
-
-            while (!g1.Complete()) {
-                g2.board.SetState(g1.board.GetState());
-                g2.board.Flip();
-                g2.ComputerPlay();
-                //g2.board.Flip();
-                //Console.WriteLine(g2);
-                //g2.board.Flip();
-
-                g1.board.SetState(g2.board.GetState());
-                g1.board.Flip();
-                g1.ComputerPlay();
-                //Console.WriteLine(g1);
+            for (var i = 1; i < 20; i++) {
+                for (var n = 3; n < 10; n++) {
+                    TakeAwayGame game = new TakeAwayGame(20, n, i, false, false);
+                    Console.WriteLine("Search Depth " + i + ", " + n + " Removes: " + game.Compare());
+                }
             }
-
-            Console.WriteLine(g1);
-            Console.WriteLine(g1.Outcome());
 
             Console.WriteLine("\nPress 'Enter' to continue...");
             Console.ReadLine();

@@ -31,6 +31,6 @@ namespace COMP717.Game.TakeAway {
             return 0;
         }
 
-        public bool isTermnial() { return chips <= 0; }
+        public bool isTerminal() { return chips <= 0; }
     }
 }

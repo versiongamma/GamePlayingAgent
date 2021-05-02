@@ -62,7 +62,7 @@ namespace COMP717.Game.TicTacToe {
             return true;
         }
 
-        public bool isTermnial() { return (Math.Abs(Eval()) == 10 || IsFull()); }
+        public bool isTerminal() { return (Math.Abs(Eval()) == 10 || IsFull()); }
 
         public int Eval() {
             int result = 0;

@@ -9,11 +9,11 @@ namespace COMP717.Game.TakeAway {
     public class TakeAwayGame {
         public Table table;
         public bool turn = true;
+        private long compSearchTime = 0;
 
         private int searchDepth, tableSize, maxTakeAway;
-        private List<long> averageOperationTime = new List<long>();
 
-        public TakeAwayGame(int tSize = 25, int mTakeAway = 3, int sDepth = 0, bool doUserInput = true) {
+        public TakeAwayGame(int tSize = 25, int mTakeAway = 3, int sDepth = 0, bool doUserInput = true, bool playerStart = true) {
             if (sDepth == 0) { searchDepth = tSize;  }
             else { searchDepth = sDepth; }
             tableSize = tSize;
@@ -21,27 +21,41 @@ namespace COMP717.Game.TakeAway {
 
             table = new Table(tableSize, maxTakeAway, turn);
 
-            if (doUserInput) { UserPlay(); }
+            if (!playerStart) {
+                turn = false;
+                Stopwatch time = new Stopwatch();
+                time.Start();
+                int play = Search(searchDepth);
+                time.Stop();
+                compSearchTime = time.ElapsedMilliseconds;
+                table.Remove(play);
+                if (doUserInput) { UserPlay(play); }
+            } else {
+                if (doUserInput) { UserPlay(); }
+            }
+
+            
         }
 
         public void Play(int move) {
-            if (table.isTermnial()) { return; }
+            if (table.isTerminal()) { return; }
 
             table.Remove(move);
-            if (table.isTermnial()) { return; }
+            if (table.isTerminal()) { return; }
             turn = false;
 
             table.Remove(Search(searchDepth));
-            if (table.isTermnial()) { return; }
+            if (table.isTerminal()) { return; }
             turn = true;
         }
 
-        public void UserPlay() {
-            var agentPlay = 0;
+        public void UserPlay(int agentPlay = 0) {
             var playerPlay = 0;
             var error = "";
 
-            while (!table.isTermnial()) {
+            turn = true;
+
+            while (!table.isTerminal()) {
 
                 Console.Clear();
 
@@ -55,6 +69,13 @@ namespace COMP717.Game.TakeAway {
                     if (agentPlay > 0) { Console.WriteLine("Computer removed " + agentPlay + " chips\n"); } else { Console.WriteLine("\n"); };
                 }
 
+                if (compSearchTime > 0) {
+                    Console.WriteLine("Computer took: " + compSearchTime + "ms to find this play");
+                    compSearchTime = 0;
+                } else {
+                    Console.WriteLine();
+                }
+
                 /** End the error and game state messages */
 
                 Console.WriteLine(table + " chips on the table");
@@ -62,7 +83,7 @@ namespace COMP717.Game.TakeAway {
                 string input = Console.ReadLine();
 
                 try {
-                    if (int.Parse(input[0] + "") > maxTakeAway || int.Parse(input[0] + "") < 1) {
+                    if (int.Parse(input) > maxTakeAway || int.Parse(input) < 1) {
                         error = "Input out of range! (1-" + maxTakeAway + ")";
                         Console.Clear();
                         continue;
@@ -76,11 +97,11 @@ namespace COMP717.Game.TakeAway {
                 // I don't like this duplication, but this isn't part of any algorithm so who cares
                 playerPlay = int.Parse(input); turn = false;
                 table.Remove(playerPlay);
-                if (table.isTermnial()) { break; }
+                if (table.isTerminal()) { break; }
 
                 agentPlay = Search(searchDepth); turn = true;
                 table.Remove(agentPlay);
-                if (table.isTermnial()) { break; }
+                if (table.isTerminal()) { break; }
 
                 
             }
@@ -95,16 +116,26 @@ namespace COMP717.Game.TakeAway {
             Console.ReadLine();
         }
 
+        public string Compare() {
+            string output = compSearchTime + "ms for first search";
+
+            while (!table.isTerminal()) {
+                int play = Search(searchDepth);
+                Play(play);
+                //output += table + " ";
+            }
+
+            return output; //+ (turn ? "First Agent" : "Second Agent") + " Won";
+        }
+
         public int Search(int depth = Int32.MaxValue) {
             Stopwatch time = new Stopwatch();
             time.Start();
             TakeAwayTree tree = new TakeAwayTree(table, depth);
             time.Stop();
-            averageOperationTime.Add(time.ElapsedMilliseconds);
+            compSearchTime = time.ElapsedMilliseconds;
 
             return tree.GetBestPlay();
         }
-
-        public long GetAverageOperationTime() { return averageOperationTime.Sum() / averageOperationTime.Count(); }
     }
 }
