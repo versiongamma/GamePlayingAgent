@@ -24,7 +24,7 @@ namespace COMP717 {
 
             var tccStarter = true;
             var taStarter = true;
-            var c4Starter = true;
+            var c4Starter = false;
             
             while (!exit) {
                 Console.Clear();
@@ -80,7 +80,7 @@ namespace COMP717 {
 
                             if (input == "x") { break; }
                             switch(input.ToLower()) {
-                                /** Settings for Tic Tac Toe */
+                                /* Settings for Tic Tac Toe */
                                 case "1":
                                     input = "";
                                     while (input != "x") {
@@ -129,7 +129,7 @@ namespace COMP717 {
                                     }
                                 break;
 
-                                /** Settings for Take Away */
+                                /* Settings for Take Away */
                                 case "2":
                                     input = "";
                                     while (input != "x") {
@@ -214,7 +214,7 @@ namespace COMP717 {
                                     }
                                     break;
 
-                                /** Settings for Connect 4 */
+                                /* Settings for Connect 4 */
                                 case "3":
                                     input = "";
                                     while (input != "x") {
@@ -292,9 +292,14 @@ namespace COMP717 {
 
         static void Compare() {
             
-            for (var i = 1; i < 20; i++) {
+           for (var i = 1; i < 30; i++) {
+                TakeAwayGame game = new TakeAwayGame(i, 3, i, false, false);
+                Console.WriteLine("Search Depth " + i + ": " + game.Compare());               
+            }
+
+            for (var i = 1; i < 25; i++) {
                 for (var n = 3; n < 10; n++) {
-                    TakeAwayGame game = new TakeAwayGame(20, n, i, false, false);
+                    TakeAwayGame game = new TakeAwayGame(30, n, i, false, false);
                     Console.WriteLine("Search Depth " + i + ", " + n + " Removes: " + game.Compare());
                 }
             }

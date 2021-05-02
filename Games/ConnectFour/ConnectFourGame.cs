@@ -95,13 +95,15 @@ namespace COMP717.Game.ConnectFour {
 
                 string input = Console.ReadLine();
 
-                if (int.Parse(input) > 7 || int.Parse(input) < 1) {
-                    error = "Input out of range! Must be between 1 and 7!";
+                try { 
+                    if (int.Parse(input) > 7 || int.Parse(input) < 1) {
+                        error = "Input out of range! Must be between 1 and 7!";
+                        continue;
+                    }
+                } catch {
+                    error = "Input not a number!";
                     continue;
-                } else {
-
                 }
-
                 int[] plays = Play(int.Parse(input) - 1);
 
                 playerPlay = plays[0];
