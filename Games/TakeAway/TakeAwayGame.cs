@@ -88,7 +88,7 @@ namespace COMP717.Game.TakeAway {
                         Console.Clear();
                         continue;
                     }
-                } catch (Exception e) {
+                } catch {
                     error = "Input not a number!";
                     Console.Clear();
                     continue;

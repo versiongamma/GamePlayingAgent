@@ -100,7 +100,7 @@ namespace COMP717.Game.TicTacToe {
                         error = "Space has already been played in!";
                         continue;
                     }
-                } catch (Exception e) {
+                } catch {
                     error = "Index not in the format (column,row)! (i.e. 3,2)";
                     continue;
                 }

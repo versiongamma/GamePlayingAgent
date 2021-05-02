@@ -108,7 +108,7 @@ namespace COMP717 {
                                                     tccSearchDepth = int.Parse(input);
                                                     input = "";
                                                     set = true;
-                                                } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
+                                                } catch { Console.WriteLine("\nNot a number!\n"); }
                                             }
                                         }
 
@@ -159,7 +159,7 @@ namespace COMP717 {
                                                     taSearchDepth = int.Parse(input);
                                                     input = "";
                                                     set = true;
-                                                } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
+                                                } catch { Console.WriteLine("\nNot a number!\n"); }
                                             }
                                         }
 
@@ -176,7 +176,7 @@ namespace COMP717 {
                                                     taCards = int.Parse(input);
                                                     input = "";
                                                     set = true;
-                                                } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
+                                                } catch { Console.WriteLine("\nNot a number!\n"); }
                                             }
                                         }
 
@@ -193,7 +193,7 @@ namespace COMP717 {
                                                     taRemoveAmount = int.Parse(input);
                                                     input = "";
                                                     set = true;
-                                                } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
+                                                } catch { Console.WriteLine("\nNot a number!\n"); }
                                             }
                                         }
 
@@ -243,7 +243,7 @@ namespace COMP717 {
                                                     c4SearchDepth = int.Parse(input);
                                                     input = "";
                                                     set = true;
-                                                } catch (Exception e) { Console.WriteLine("\nNot a number!\n"); }
+                                                } catch { Console.WriteLine("\nNot a number!\n"); }
                                             }
                                         }
 
