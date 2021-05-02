@@ -24,7 +24,7 @@ namespace COMP717 {
 
             var tccStarter = true;
             var taStarter = true;
-            var c4Starter = false;
+            var c4Starter = true;
             
             while (!exit) {
                 Console.Clear();
@@ -285,7 +285,7 @@ namespace COMP717 {
                         exit = true;
                         break;
                 }              
-            }
+            }   
         }
     }
 }
