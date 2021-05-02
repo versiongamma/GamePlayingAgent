@@ -35,7 +35,7 @@ namespace COMP717 {
 " | |   | |  | | \\  / | |__) |  / / | |   / / \n" +
 " | |   | |  | | |\\/| |  ___/  / /  | |  / /  \n" +
 " | |___| |__| | |  | | |     / /   | | / /   \n" +
-"  \\_____\\____/|_|  |_|_|    /_/    |_|/_/    ");
+"  \\_____\\____/|_|  |_|_|    /_/    |_|/_/  v1.0");
 
                 Console.WriteLine("\n -- Assignment One - Game Playing Agents --");
                 Console.WriteLine("       -- Matt Tribble - 19076935 --\n");
