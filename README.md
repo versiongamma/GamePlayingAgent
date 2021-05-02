@@ -4,20 +4,19 @@
 
 ---
 
-## Minimax
+This repository contains the code base for a .NET console application that allows the user to play against game playing agents, and adjust the settings that the agent uses for a specified game.
 
->TicTacToe and Take Away are both solved with a Minimax algorithm, either depth limited or with a full tree search
+## TicTacToe
 
-## Alpha Beta Pruning
+## Take Away
 
->Connect Four, alongside the Minimax algorithm, has a αβ pruned tree search.
+In this game, there is a pile of X chips on the table. Two players take turns to remove 1 to n chips from the table, with player 1 starting first, and the player removing the last chip(s) wins the game.
 
-The evalutation function of Connect Four is as follows:
+For this game, the user can specify the same parameters as in TicTacToe, while also adding:
 
-`for (all columns, rows, diagonals) eval += X1 + 3*X2 + 5*X3 - (O1 + 3*O2 + 5*O3)`
+- The number of chips that start on the table (X)
+- The amount each player is allowed to remove (n)
 
-`if (X4 == 1) eval = 100`
+## Connect 4
 
-`if (O4 == 1) eval = -100`
-
-Where X1-04 is the number of chips in succession of a specific type, i.e. X2 is 2 X chips in succession 
+Connect 4 has an updated search algorithm, Alpha Beta Pruning, which acts as a superset of Minimax, wherein it has the same basic function, but will prune nodes based on specific conditions. In this implementation, αβ pruning is done during the generation of the game tree, unlike Minimax which is run after the tree is created
