@@ -8,6 +8,11 @@ This repository contains the code base for a .NET console application that allow
 
 ## TicTacToe
 
+The user can adjust these settings of the TicTacToe agent's search algorithm (as well as for the rest of the games):
+
+- The search depth of the game tree generation before evaluating the state
+- Which player starts first (the user or the agent)
+
 ## Take Away
 
 In this game, there is a pile of X chips on the table. Two players take turns to remove 1 to n chips from the table, with player 1 starting first, and the player removing the last chip(s) wins the game.
@@ -19,4 +24,6 @@ For this game, the user can specify the same parameters as in TicTacToe, while a
 
 ## Connect 4
 
-Connect 4 has an updated search algorithm, Alpha Beta Pruning, which acts as a superset of Minimax, wherein it has the same basic function, but will prune nodes based on specific conditions. In this implementation, αβ pruning is done during the generation of the game tree, unlike Minimax which is run after the tree is created
+Connect 4 has an updated search algorithm, Alpha Beta Pruning, which acts as a superset of Minimax, wherein it has the same basic function, but will prune nodes based on specific conditions. In this implementation, αβ pruning is done during the generation of the game tree, unlike Minimax which is run after the tree is created. Extra options include:
+
+- Specifing the search algorithm (αβ or Minimax)
