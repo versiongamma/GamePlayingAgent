@@ -32,7 +32,7 @@ namespace COMP717.Game.ConnectFour {
         }
 
         public int[] Play(int x) {
-            board.Add(x, turn);
+            if (!board.Add(x, turn)) { return new int[] { -1, -1 }; }
             if (board.isTerminal()) { return new int[] { -1, -1 }; }
             turn = turn == 'X' ? 'O' : 'X';
 
@@ -67,14 +67,14 @@ namespace COMP717.Game.ConnectFour {
 
                 if (compPlay > -1) {
                     Console.WriteLine("Computer (X) played in column: " + (compPlay + 1));
-                    compPlay = 0;
+                    compPlay = -1;
                 } else {
                     Console.WriteLine();
                 }
 
                 if (playerPlay > -1) {
                     Console.WriteLine("You (O) played in column: " + (playerPlay + 1));
-                    playerPlay = 0;
+                    playerPlay = -1;
                 } else {
                     Console.WriteLine();
                 }
@@ -104,6 +104,10 @@ namespace COMP717.Game.ConnectFour {
                     continue;
                 }
                 int[] plays = Play(int.Parse(input) - 1);
+                if (plays == new int[] { -1, -1 } ) {
+                    error = "Column already full!";
+                    continue;
+                }
 
                 playerPlay = plays[0];
                 compPlay = plays[1];
