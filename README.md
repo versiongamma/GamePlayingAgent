@@ -27,3 +27,5 @@ For this game, the user can specify the same parameters as in TicTacToe, while a
 Connect 4 has an updated search algorithm, Alpha Beta Pruning, which acts as a superset of Minimax, wherein it has the same basic function, but will prune nodes based on specific conditions. In this implementation, αβ pruning is done during the generation of the game tree, unlike Minimax which is run after the tree is created. Extra options include:
 
 - Specifing the search algorithm (αβ or Minimax)
+
+<img align="right" width="300" height="75" src="https://i.imgur.com/XSfLngf.png"></img>
